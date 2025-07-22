@@ -6,20 +6,30 @@ from appium.webdriver.common.appiumby import AppiumBy
 
 class MainMenuScreen(BasePage):
     
-    active_project = (AppiumBy.XPATH, "//android.widget.TextView[@text='Активный проект: ']")
-    active_road = (AppiumBy.XPATH, "//android.widget.TextView[@text='Активная дорога: ']")
-    projects_button = (AppiumBy.XPATH, "//android.widget.TextView[@text='Проекты']")
-    roads_button = (AppiumBy.XPATH, "//android.widget.TextView[@text='Дороги']")
-    road_objects_button = (AppiumBy.XPATH, "//android.widget.TextView[@text='Дорожные объекты']")
-    map_button = (AppiumBy.XPATH, "//android.widget.TextView[@text='Карта']")
-    export_button = (AppiumBy.XPATH, "//android.widget.TextView[@text='Экспорт']")
+    BUTTONS = {
+        "Активный проект": (AppiumBy.XPATH, "//android.widget.TextView[@text='Активный проект: ']"),
+        "Активная дорога": (AppiumBy.XPATH, "//android.widget.TextView[@text='Активная дорога: ']"),
+        "Проекты": (AppiumBy.XPATH, "//android.widget.TextView[@text='Проекты']"),
+        "Дороги": (AppiumBy.XPATH, "//android.widget.TextView[@text='Дороги']"),
+        "Дорожные объекты": (AppiumBy.XPATH, "//android.widget.TextView[@text='Дорожные объекты']"),
+        "Карта": (AppiumBy.XPATH, "//android.widget.TextView[@text='Карта']"),
+        "Экспорт": (AppiumBy.XPATH, "//android.widget.TextView[@text='Экспорт']"),
+
+        #Road objects buttons
+        "Трубы": (AppiumBy.XPATH, "//android.widget.TextView[@text='Трубы']"),
+        "Мосты": (AppiumBy.XPATH, "//android.widget.TextView[@text='Мосты']"),
+        "Столбы": (AppiumBy.XPATH, "//android.widget.TextView[@text='Столбы']"),
+        "Метки": (AppiumBy.XPATH, "//android.widget.TextView[@text='Метки']"),
+
+        #Export buttons
+        "Обменный формат": (AppiumBy.XPATH, "//android.widget.TextView[@text='Обменный формат']"),
+        "Архив CSV": (AppiumBy.XPATH, "//android.widget.TextView[@text='Обменный формат']"),
+        "Отчет": (AppiumBy.XPATH, "//android.widget.TextView[@text='Отчет']")
+    }
+
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.active_project = self.find(self.active_project)
-        self.active_road = self.find(self.active_road)
-        self.projects_button = self.find(self.projects_button)
-        self.roads_button = self.find(self.roads_button)
-        self.road_objects_button = self.find(self.road_objects_button)
-        self.map_button = self.find(self.map_button)
-        self.export_button = self.find(self.export_button)
+
+    def click_button(self, name):
+        self.click(self.BUTTONS[name])
