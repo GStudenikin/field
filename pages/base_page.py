@@ -1,5 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.actions.action_builder import ActionBuilder
+from selenium.webdriver.common.actions.pointer_input import PointerInput
 
 class BasePage:
     def __init__(self, driver):
@@ -18,3 +20,25 @@ class BasePage:
             return element.is_displayed()
         except:
             return False
+    
+    def get_location(self, locator):
+        return self.find(locator).location
+    
+    def get_size(self, locator):
+        return self.find(locator).size
+
+    def get_center(self, locator):
+        location = self.get_location(locator)
+        size = self.get_size(locator)
+        return {'x': location['x'] + size['width'] / 2, 'y': location['y'] + size['height'] / 2}
+    
+    def swipe_select(self, locator):
+        finger = PointerInput("touch", "finger1")
+        actions = ActionBuilder(self.driver, mouse=finger)
+        coordinates = self.get_center(locator)
+        size = self.driver.get_window_size()
+        actions.pointer_action.move_to_location(coordinates['x'], coordinates['y'])
+        actions.pointer_action.pointer_down()
+        actions.pointer_action.move_to_location(coordinates['x']+size['width']/2, coordinates['y'])
+        actions.pointer_action.pointer_up()
+        actions.perform()

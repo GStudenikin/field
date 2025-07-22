@@ -17,3 +17,6 @@ class ProjectsScreen(BasePage):
 
     def click_button(self, name):
         self.click(self.BUTTONS[name])
+    
+    def select_project_swipe(self, project_name):
+        self.swipe_select((AppiumBy.XPATH, f"//android.widget.TextView[@text='{project_name}']"))
