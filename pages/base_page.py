@@ -1,5 +1,6 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium.webdriver.common.actions.pointer_input import PointerInput
 
@@ -53,3 +54,6 @@ class BasePage:
         element = self.find(locator)
         element.click()
         element.send_keys(text)
+
+    def back_click(self):
+        self.click((AppiumBy.XPATH, "//android.view.View[@content-desc='Назад']"))
