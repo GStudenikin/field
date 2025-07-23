@@ -48,3 +48,8 @@ class BasePage:
         element.click()
         self.driver.press_keycode(29, metastate=4096)
         self.driver.press_keycode(67)
+    
+    def set_text(self, locator, text):
+        element = self.find(locator)
+        element.click()
+        element.send_keys(text)
