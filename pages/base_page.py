@@ -42,3 +42,9 @@ class BasePage:
         actions.pointer_action.move_to_location(coordinates['x']+size['width']/2, coordinates['y'])
         actions.pointer_action.pointer_up()
         actions.perform()
+    
+    def clear_text_field(self, locator):
+        element = self.find(locator)
+        element.click()
+        self.driver.press_keycode(29, metastate=4096)
+        self.driver.press_keycode(67)
