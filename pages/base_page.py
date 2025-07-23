@@ -38,9 +38,9 @@ class BasePage:
         actions = ActionBuilder(self.driver, mouse=finger)
         coordinates = self.get_center(locator)
         size = self.driver.get_window_size()
-        actions.pointer_action.move_to_location(coordinates['x'], coordinates['y'])
+        actions.pointer_action.move_to_location(100, coordinates['y'])
         actions.pointer_action.pointer_down()
-        actions.pointer_action.move_to_location(coordinates['x']+size['width']/2, coordinates['y'])
+        actions.pointer_action.move_to_location(100+size['width']/2, coordinates['y'])
         actions.pointer_action.pointer_up()
         actions.perform()
     
