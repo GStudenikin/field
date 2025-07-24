@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium.webdriver.common.actions.pointer_input import PointerInput
+from selenium.common.exceptions import StaleElementReferenceException
 
 class BasePage:
     def __init__(self, driver):
@@ -12,8 +13,14 @@ class BasePage:
         return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
     
     def click(self, locator, timeout=10):
-        element = self.find(locator, timeout)
-        element.click()
+        for attempt in range(3):
+            try:
+                element = self.find(locator, timeout)
+                element.click()
+                return
+            except StaleElementReferenceException:
+                if attempt == 2:
+                    raise
     
     def is_displayed(self, locator, timeout=10):
         try:
