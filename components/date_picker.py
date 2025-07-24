@@ -6,7 +6,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 
 
 class DatePicker(BasePage):
-    
+#To do: реализовать ввод с помощью пикера, а не поля ввода    
     TYPES = {
         "input": (AppiumBy.XPATH, "//android.view.View[@content-desc='Перейти в режим ввода текста']"),
         "pick": (AppiumBy.XPATH, "//android.view.View[@content-desc='Перейти в режим выбора даты']"),

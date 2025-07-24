@@ -2,6 +2,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from pages.base_page import BasePage
+from components.date_picker import DatePicker
 from appium.webdriver.common.appiumby import AppiumBy
 
 class ProjectEditorScreen(BasePage):
@@ -20,11 +21,30 @@ class ProjectEditorScreen(BasePage):
     def click_element(self, element):
         self.click(self.ELEMENTS[element])
     
-    def select_examination_type(self, examination_name):
+    def set_examination_type(self, examination_name):
+        self.click_element("Вид обследования")
         self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{examination_name}']"))
     
-    def project_name(self, name):
+    def set_project_name(self, name):
         self.set_text(self.ELEMENTS["Название проекта"], name)
     
-    def comment(self, text):
+    def set_comment(self, text):
         self.set_text(self.ELEMENTS["Комментарий"], text)
+    
+    def set_start_date(self, date, method = "input"):
+        self.click_element("Начало")
+        date_picker = DatePicker(self.driver)
+        if method == "input":
+            date_picker.click_type("input")
+            date_picker.set_date(date.replace(".", ""))
+        else:
+            pass
+
+    def set_end_date(self, date, method = "input"):
+        self.click_element("Окончание")
+        date_picker = DatePicker(self.driver)
+        if method == "input":
+            date_picker.click_type("input")
+            date_picker.set_date(date.replace(".", ""))
+        else:
+            pass
