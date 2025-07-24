@@ -38,7 +38,11 @@ class DatePicker(BasePage):
     def clear_date(self):
         self.clear_text_field(self.ELEMENTS["Дата"])
     
-    def set_date(self, date):
-        self.clear_date()
-        self.set_text(self.ELEMENTS["Дата"], date)
+    def set_date(self, date, method="input"):
+        if method == "input":
+            self.click_type("input")
+            self.clear_date()
+            self.set_text(self.ELEMENTS["Дата"], date.replace(".", ""))
+        else:
+            pass
         self.click_element("Выбрать")

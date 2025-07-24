@@ -35,20 +35,12 @@ class ProjectEditorScreen(BasePage):
         self.click_element("Комментарий")
         self.set_text(self.ELEMENTS["Комментарий"], text)
     
-    def set_start_date(self, date, method="input"):
+    def set_start_date(self, date):
         self.click_element("Начало")
         date_picker = DatePicker(self.driver)
-        if method == "input":
-            date_picker.click_type("input")
-            date_picker.set_date(date.replace(".", ""))
-        else:
-            pass
+        date_picker.set_date(date)
 
     def set_end_date(self, date, method = "input"):
         self.click_element("Окончание")
         date_picker = DatePicker(self.driver)
-        if method == "input":
-            date_picker.click_type("input")
-            date_picker.set_date(date.replace(".", ""))
-        else:
-            pass
+        date_picker.set_date(date)
