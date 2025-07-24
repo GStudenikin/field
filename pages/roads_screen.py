@@ -7,7 +7,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 class RoadsScreen(BasePage):
 
     BUTTONS = {
-        "+": (AppiumBy.XPATH, "//android.view.View[@content-desc='Добавить дорогу']"),
+        "+": (AppiumBy.XPATH, "//android.view.View[@content-desc='Создать дорогу']"),
         "Поиск": (AppiumBy.XPATH, "//android.view.View[@content-desc='Поиск']"),
         "Заполнить вручную": (AppiumBy.XPATH, "//android.widget.TextView[@text='Заполнить вручную']"),
         "Импорт из текстового файла": (AppiumBy.XPATH, "//android.widget.TextView[@text='Импорт из текстового файла']")
