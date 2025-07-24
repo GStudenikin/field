@@ -10,7 +10,7 @@ class RoadsScreen(BasePage):
         "+": (AppiumBy.XPATH, "//android.view.View[@content-desc='Добавить дорогу']"),
         "Поиск": (AppiumBy.XPATH, "//android.view.View[@content-desc='Поиск']"),
         "Заполнить вручную": (AppiumBy.XPATH, "//android.widget.TextView[@text='Заполнить вручную']"),
-        "Импорт из текстового файла": (AppiumBy.XPATH, "//android.widget.TextView[@text='Импорт из текстового файла']"),
+        "Импорт из текстового файла": (AppiumBy.XPATH, "//android.widget.TextView[@text='Импорт из текстового файла']")
     }
 
     SEARCH_FIELD = (AppiumBy.XPATH, "//android.widget.EditText[.//android.widget.TextView[@text='Поиск дороги']]")
