@@ -5,6 +5,8 @@ from pages.base_page import BasePage
 from components.date_picker import DatePicker
 from appium.webdriver.common.appiumby import AppiumBy
 
+#Необходимо реализовать функционал для режима редактирования
+
 class ProjectEditorScreen(BasePage):
     ELEMENTS = {
         "Название проекта": (AppiumBy.XPATH, "//android.widget.EditText[.//android.widget.TextView[@text='Название проекта']]"),
@@ -26,12 +28,14 @@ class ProjectEditorScreen(BasePage):
         self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{examination_name}']"))
     
     def set_project_name(self, name):
+        self.click_element("Название проекта")
         self.set_text(self.ELEMENTS["Название проекта"], name)
     
     def set_comment(self, text):
+        self.click_element("Комментарий")
         self.set_text(self.ELEMENTS["Комментарий"], text)
     
-    def set_start_date(self, date, method = "input"):
+    def set_start_date(self, date, method="input"):
         self.click_element("Начало")
         date_picker = DatePicker(self.driver)
         if method == "input":
