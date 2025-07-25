@@ -10,7 +10,7 @@ class PipesScreen(BasePage):
         "Сортировка": (AppiumBy.XPATH, "//android.view.View[@content-desc='Сортировка']"),
         "Фильтр": (AppiumBy.XPATH, "//android.view.View[@content-desc='Фильтр']"),
         # ДЕФЕКТ!!! Необходимо исправить
-        "+": (AppiumBy.XPATH, "//android.view.View[@content-desc='Добавить дорогу']"),
+        "+": (AppiumBy.XPATH, "//android.view.View[@content-desc='Создать трубу']"),
         ################################
         "Создать новую": (AppiumBy.XPATH, "//android.widget.TextView[@text='Создать новую']"),
         "Импорт обменного формата": (AppiumBy.XPATH, "//android.widget.TextView[@text='Выбрать из шаблонов']")
