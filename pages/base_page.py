@@ -64,3 +64,28 @@ class BasePage:
 
     def back_click(self):
         self.click((AppiumBy.XPATH, "//android.view.View[@content-desc='Назад']"))
+    
+    def swipe(self, point_start, point_end):
+        finger = PointerInput("touch", "finger1")
+        actions = ActionBuilder(self.driver, mouse=finger)
+        actions.pointer_action.move_to_location(point_start[0], point_start[1])
+        actions.pointer_action.pointer_down()
+        actions.pointer_action.move_to_location(point_end[0], point_end[1])
+        actions.pointer_action.pointer_up()
+        actions.perform()
+
+    def swipe_until_find(self, target_locator, step_x, step_y, outside_object_locator=None):
+        if outside_object_locator != None:
+            size = self.get_size(outside_object_locator)
+            location = self.get_location(outside_object_locator)
+            start_point = {
+                "x": (location["x"] + size["width"])/2,
+                "y": location["y"] + size["height"] - 10
+            }
+        else:
+            start_point = {
+                "x": self.driver.get_window_size()["width"]/2,
+                "y": self.driver.get_window_size()["height"]/2
+            }
+        while self.is_displayed(target_locator, 1) != True:
+            self.swipe([start_point["x"], start_point["y"]], [start_point["x"] + step_x, start_point["y"] + step_y])
