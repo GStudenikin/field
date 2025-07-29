@@ -93,8 +93,8 @@ class BasePage:
             size = self.get_size(outside_object_locator)
             location = self.get_location(outside_object_locator)
             start_point = {
-                "x": (location["x"] + size["width"])/2,
-                "y": location["y"] + size["height"] - 10
+                "x": location["x"] + size["width"]/2,
+                "y": location["y"] + size["height"] - 30
             }
         else:
             start_point = {
@@ -103,3 +103,13 @@ class BasePage:
             }
         while self.is_displayed(target_locator, 1) != True:
             self.swipe([start_point["x"], start_point["y"]], [start_point["x"] - step_x, start_point["y"] - step_y])
+    
+    def set_dropdown(self, value):
+        """
+        Выбирает элемент из выпадающего списка по тексту.
+
+        Аргументы:
+            value (str): Текстовое значение элемента, который нужно выбрать.
+        """
+        self.swipe_until_find((AppiumBy.XPATH, f"//android.widget.TextView[@text='{value}']"), 0, 100, (AppiumBy.XPATH, "//android.widget.ScrollView"))
+        self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{value}']"))

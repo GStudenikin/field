@@ -38,12 +38,12 @@ class RoadEditorScreen(BasePage):
     
     def set_status(self, status):
         self.click_element("Статус")
-        self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{status}']"))
+        self.set_dropdown(status)
 
     def set_category(self, category):
         self.click_element("Категория")
-        self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{category}']"))
+        self.set_dropdown(category)
     
     def set_class(self, class_name):
         self.click_element("Класс")
-        self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{class_name}']"))
+        self.set_dropdown(class_name)

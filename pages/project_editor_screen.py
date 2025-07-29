@@ -25,7 +25,7 @@ class ProjectEditorScreen(BasePage):
     
     def set_examination_type(self, examination_name):
         self.click_element("Вид обследования")
-        self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{examination_name}']"))
+        self.set_dropdown(examination_name)
     
     def set_project_name(self, name):
         self.click_element("Название проекта")
