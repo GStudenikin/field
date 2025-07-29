@@ -15,7 +15,7 @@ class RoadsScreen(BasePage):
 
     SEARCH_FIELD = (AppiumBy.XPATH, "//android.widget.EditText[.//android.widget.TextView[@text='Поиск дороги']]")
     
-    # To do: Написать взаимодействие с существующей дорогой
+    # TODO: Реализовать взаимодействие с существующими дорогами
     def __init__(self, driver):
         super().__init__(driver)
 

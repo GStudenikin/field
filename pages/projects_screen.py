@@ -11,7 +11,9 @@ class ProjectsScreen(BasePage):
         "Новый проект": (AppiumBy.XPATH, "//android.widget.TextView[@text='Новый проект']"),
         "Импорт обменного формата": (AppiumBy.XPATH, "//android.widget.TextView[@text='Импорт обменного формата']")
     }
-    # To do: Написать взаимодействие с существующим проектом
+    
+    # TODO: Реализовать взаимодействие с существующим проектом
+
     def __init__(self, driver):
         super().__init__(driver)
 

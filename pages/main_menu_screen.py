@@ -23,7 +23,7 @@ class MainMenuScreen(BasePage):
 
         #Export buttons
         "Обменный формат": (AppiumBy.XPATH, "//android.widget.TextView[@text='Обменный формат']"),
-        "Архив CSV": (AppiumBy.XPATH, "//android.widget.TextView[@text='Обменный формат']"),
+        "Архив CSV": (AppiumBy.XPATH, "//android.widget.TextView[@text='Архив CSV']"),
         "Отчет": (AppiumBy.XPATH, "//android.widget.TextView[@text='Отчет']")
     }
 

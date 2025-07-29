@@ -33,7 +33,7 @@ class General(BasePage):
         "Год постройки": (AppiumBy.XPATH, "//android.widget.EditText[.//android.widget.TextView[@text='Год постройки (реконструкции)']]"),
         "Год капремонта": (AppiumBy.XPATH, "//android.widget.EditText[.//android.widget.TextView[@text='Год капремонта']]"),
         "Комментарий": (AppiumBy.XPATH, "//android.widget.EditText[.//android.widget.TextView[@text='Комментарий']]"),
-        #Отсутствует идентификатор
+        # TODO: Запросить у отдела разработки добавить идентификатор для кнопки записи звука, а также для звуковых файлов
         "Запись звука": "ПРОПУСК"
     }
     

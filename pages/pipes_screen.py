@@ -9,12 +9,12 @@ class PipesScreen(BasePage):
     ELEMENTS = {
         "Сортировка": (AppiumBy.XPATH, "//android.view.View[@content-desc='Сортировка']"),
         "Фильтр": (AppiumBy.XPATH, "//android.view.View[@content-desc='Фильтр']"),
-        # ДЕФЕКТ!!! Необходимо исправить
         "+": (AppiumBy.XPATH, "//android.view.View[@content-desc='Создать трубу']"),
-        ################################
         "Создать новую": (AppiumBy.XPATH, "//android.widget.TextView[@text='Создать новую']"),
         "Импорт обменного формата": (AppiumBy.XPATH, "//android.widget.TextView[@text='Выбрать из шаблонов']")
     }
+
+    # TODO: Реализовать взаимодействие с существующими трубами
 
     def __init__(self, driver):
         super().__init__(driver)
