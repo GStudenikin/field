@@ -75,6 +75,20 @@ class BasePage:
         actions.perform()
 
     def swipe_until_find(self, target_locator, step_x, step_y, outside_object_locator=None):
+        """
+        Выполняет свайп по элементу или экрану до появления целевого элемента.
+
+        Аргументы:
+            target_locator: локатор элемента, который должен появиться на экране.
+            step_x: шаг по оси X. Положительное значение — свайп влево, отрицательное — вправо.
+            step_y: шаг по оси Y. Положительное значение — свайп вниз, отрицательное — вверх.
+            outside_object_locator (опционально): локатор элемента, по которому выполнять свайп.
+                Если не указан — свайп выполняется от центра экрана.
+
+        Примечания:
+            - Функция предполагает, что местоположение target_locator известно.
+            - Автоматический поиск target_locator пока не реализован.
+        """
         if outside_object_locator != None:
             size = self.get_size(outside_object_locator)
             location = self.get_location(outside_object_locator)
@@ -88,4 +102,4 @@ class BasePage:
                 "y": self.driver.get_window_size()["height"]/2
             }
         while self.is_displayed(target_locator, 1) != True:
-            self.swipe([start_point["x"], start_point["y"]], [start_point["x"] + step_x, start_point["y"] + step_y])
+            self.swipe([start_point["x"], start_point["y"]], [start_point["x"] - step_x, start_point["y"] - step_y])
