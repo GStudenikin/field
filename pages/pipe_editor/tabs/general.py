@@ -74,3 +74,20 @@ class General(BasePage):
         self.click_element("Уклон трубы")
         self.set_text(self.ELEMENTS["Уклон трубы"], str(slope))
     
+    def set_bottom_reinforcement(self, reinforcement):
+        self.swipe_until_find(self.ELEMENTS["Укреп. дна"], 0, 200)
+        self.click_element("Укреп. дна")
+        self.swipe_until_find((AppiumBy.XPATH, f"//android.widget.TextView[@text='{reinforcement}']"), 0, 100, (AppiumBy.XPATH, "//android.widget.ScrollView"))
+        self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{reinforcement}']"))
+    
+    def set_pipe_encasemant(self, encasement):
+        self.swipe_until_find(self.ELEMENTS["Изоляция"], 0, 200)
+        self.click_element("Изоляция")
+        self.swipe_until_find((AppiumBy.XPATH, f"//android.widget.TextView[@text='{encasement}']"), 0, 100, (AppiumBy.XPATH, "//android.widget.ScrollView"))
+        self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{encasement}']"))
+    
+    def set_subgrade_soil(self, soil):
+        self.swipe_until_find(self.ELEMENTS["Грунт основания"], 0, 200)
+        self.click_element("Грунт основания")
+        self.swipe_until_find((AppiumBy.XPATH, f"//android.widget.TextView[@text='{soil}']"), 0, 100, (AppiumBy.XPATH, "//android.widget.ScrollView"))
+        self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{soil}']"))
