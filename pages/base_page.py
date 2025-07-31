@@ -104,12 +104,16 @@ class BasePage:
         while self.is_displayed(target_locator, 1) != True:
             self.swipe([start_point["x"], start_point["y"]], [start_point["x"] - step_x, start_point["y"] - step_y])
     
-    def set_dropdown(self, value):
+    def set_dropdown(self, field, value, swipe=False):
         """
-        Выбирает элемент из выпадающего списка по тексту.
+        Выполняет поиск поля 'field'. Открывает выпадающий список по локатору 'field' и выбирает пункт с текстом value.
 
         Аргументы:
+            field: локатор поля, которое нужно открыть для выбора значения.
             value (str): Текстовое значение элемента, который нужно выбрать.
         """
+        if swipe:
+            self.swipe_until_find(field, 0, 200)
+        self.click(field)
         self.swipe_until_find((AppiumBy.XPATH, f"//android.widget.TextView[@text='{value}']"), 0, 100, (AppiumBy.XPATH, "//android.widget.ScrollView"))
         self.click((AppiumBy.XPATH, f"//android.widget.TextView[@text='{value}']"))

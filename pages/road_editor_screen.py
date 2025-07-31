@@ -37,13 +37,10 @@ class RoadEditorScreen(BasePage):
         self.set_text(self.ELEMENTS["Шифр"], code)
     
     def set_status(self, status):
-        self.click_element("Статус")
-        self.set_dropdown(status)
+        self.set_dropdown(self.ELEMENTS["Статус"], status)
 
     def set_category(self, category):
-        self.click_element("Категория")
-        self.set_dropdown(category)
+        self.set_dropdown(self.ELEMENTS["Категория"], category)
     
     def set_class(self, class_name):
-        self.click_element("Класс")
-        self.set_dropdown(class_name)
+        self.set_dropdown(self.ELEMENTS["Класс"], class_name)

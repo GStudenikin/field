@@ -24,8 +24,7 @@ class ProjectEditorScreen(BasePage):
         self.click(self.ELEMENTS[element])
     
     def set_examination_type(self, examination_name):
-        self.click_element("Вид обследования")
-        self.set_dropdown(examination_name)
+        self.set_dropdown(self.ELEMENTS["Вид обследования"], examination_name)
     
     def set_project_name(self, name):
         self.click_element("Название проекта")

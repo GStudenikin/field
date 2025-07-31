@@ -45,12 +45,10 @@ class Segments(BasePage):
         self.set_text(self.ELEMENTS["Количество участков"], str(number))
     
     def set_segment_type(self, type):
-        self.click_element("Тип")
-        self.set_dropdown(type)
+        self.set_dropdown(self.ELEMENTS["Тип"], type)
 
     def set_material(self, name):
-        self.click_element("Материал")
-        self.set_dropdown(name)
+        self.set_dropdown(self.ELEMENTS["Материал"], name)
     
     def set_number_of_joints(self, number):
         self.clear_text_field(self.ELEMENTS["Кол-во очков"])

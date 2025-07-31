@@ -117,8 +117,7 @@ class Headwall(BasePage):
         Аргументы:
             mode (str): Режим работы, который нужно выбрать из выпадающего списка.
         """
-        self.click_element("Режим работы")
-        self.set_dropdown(mode)
+        self.set_dropdown(self.ELEMENTS["Режим работы"], mode)
     
     def set_type(self, name):
         """
@@ -127,8 +126,7 @@ class Headwall(BasePage):
         Аргументы:
             name (str): Тип, который нужно выбрать из выпадающего списка.
         """
-        self.click_element("Тип")
-        self.set_dropdown(name)
+        self.set_dropdown(self.ELEMENTS["Тип"], name)
     
     def set_material(self, material):
         """
@@ -137,8 +135,7 @@ class Headwall(BasePage):
         Аргументы:
             material (str): Материал, который нужно выбрать из выпадающего списка.
         """
-        self.click_element("Материал")
-        self.set_dropdown(material)
+        self.set_dropdown(self.ELEMENTS["Материал"], material)
     
     def set_slope_protection(self, name):
         """
@@ -147,8 +144,7 @@ class Headwall(BasePage):
         Аргументы:
             name (str): Тип, который нужно выбрать из выпадающего списка.
         """
-        self.click_element("Укрепление откоса")
-        self.set_dropdown(name)
+        self.set_dropdown(self.ELEMENTS["Укрепление откоса"], name)
 
     def set_apron_reinforcement(self, name):
         """
@@ -157,8 +153,7 @@ class Headwall(BasePage):
         Аргументы:
             name (str): Тип, который нужно выбрать из выпадающего списка.
         """
-        self.click_element("Укрепление лотка")
-        self.set_dropdown(name)
+        self.set_dropdown(self.ELEMENTS["Укрепление лотка"], name)
     
     def set_channel_stabilization(self, name):
         """
@@ -167,8 +162,7 @@ class Headwall(BasePage):
         Аргументы:
             name (str): Тип, который нужно выбрать из выпадающего списка.
         """
-        self.click_element("Укрепление русла")
-        self.set_dropdown(name)
+        self.set_dropdown(self.ELEMENTS["Укрепление русла"], name)
 
     def set_invert_elevation(self, value):
         """

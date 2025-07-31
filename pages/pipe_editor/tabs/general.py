@@ -63,8 +63,7 @@ class General(BasePage):
         self.set_text(self.ELEMENTS["Номер трубы"], str(number))
     
     def set_position(self, position):
-        self.click_element("Положение")
-        self.set_dropdown(position)
+        self.set_dropdown(self.ELEMENTS["Положение"], position)
     
     def set_pipe_length(self, length):
         self.click_element("Длина трубы")
@@ -75,35 +74,23 @@ class General(BasePage):
         self.set_text(self.ELEMENTS["Уклон трубы"], str(slope))
     
     def set_bottom_reinforcement(self, reinforcement):
-        self.swipe_until_find(self.ELEMENTS["Укреп. дна"], 0, 200)
-        self.click_element("Укреп. дна")
-        self.set_dropdown(reinforcement)
+        self.set_dropdown(self.ELEMENTS["Укреп. дна"], reinforcement, True)
     
     def set_pipe_encasemant(self, encasement):
-        self.swipe_until_find(self.ELEMENTS["Изоляция"], 0, 200)
-        self.click_element("Изоляция")
-        self.set_dropdown(encasement)
+        self.set_dropdown(self.ELEMENTS["Изоляция"], encasement, True)
     
     def set_subgrade_soil(self, soil):
-        self.swipe_until_find(self.ELEMENTS["Грунт основания"], 0, 200)
-        self.click_element("Грунт основания")
-        self.set_dropdown(soil)
+        self.set_dropdown(self.ELEMENTS["Грунт основания"], soil, True)
 
     def set_base_type(self, type):
-        self.swipe_until_find(self.ELEMENTS["Тип основания"], 0, 200)
-        self.click_element("Тип основания")
-        self.set_dropdown(type)
+        self.set_dropdown(self.ELEMENTS["Тип основания"], type, True)
     
     def set_foundation_type(self, type):
-        self.swipe_until_find(self.ELEMENTS["Тип фундамента"], 0, 200)
-        self.click_element("Тип фундамента")
-        self.set_dropdown(type)
+        self.set_dropdown(self.ELEMENTS["Тип фундамента"], type, True)
     
     def set_foundation_material(self, material):
-        self.swipe_until_find(self.ELEMENTS["Материал фундамента"], 0, 200)
-        self.click_element("Материал фундамента")
-        self.set_dropdown(material)
-    ###
+        self.set_dropdown(self.ELEMENTS["Материал фундамента"], material, True)
+    
     def set_embankment_height(self, height):
         self.swipe_until_find(self.ELEMENTS["Высота насыпи"], 0, 200)
         self.click_element("Высота насыпи")
@@ -120,9 +107,7 @@ class General(BasePage):
         self.set_text(self.ELEMENTS["Толщина засыпки"], str(value))
     
     def set_obstruction(self, obstruction):
-        self.swipe_until_find(self.ELEMENTS["Помеха"], 0, 200)
-        self.click_element("Помеха")
-        self.set_dropdown(obstruction)
+        self.set_dropdown(self.ELEMENTS["Помеха"], obstruction, True)
     
     def set_intersection_angle(self, angle):
         self.swipe_until_find(self.ELEMENTS["Угол пересечения"], 0, 200)
@@ -136,9 +121,7 @@ class General(BasePage):
         self.set_text(self.ELEMENTS["Наименование водотока"], name)
     
     def set_pipeline_type(self, type):
-        self.swipe_until_find(self.ELEMENTS["Тип трубопровода"], 0, 200)
-        self.click_element("Тип трубопровода")
-        self.set_dropdown(type)
+        self.set_dropdown(self.ELEMENTS["Тип трубопровода"], type, True)
     
     def set_axial_load(self, load):
         self.swipe_until_find(self.ELEMENTS["Осевая нагрузка"], 0, 200)
