@@ -11,6 +11,8 @@ class PipeEditorScreen(BasePage):
         "Применить лучший": (AppiumBy.XPATH, "//android.widget.TextView[@text='Скрыть']/following-sibling::android.widget.Button"),
         "Скрыть": (AppiumBy.XPATH, "//android.widget.TextView[@text='Скрыть']/following-sibling::android.widget.Button"),
         "Местоположение": (AppiumBy.XPATH, "//android.view.View[@content-desc='Добавить/обновить местоположение']/following-sibling::android.widget.Button"),
+        "Определяем местоположение": (AppiumBy.XPATH, "//android.widget.TextView[@text='Определяем местоположение']"),
+        "Местоположение определено": (AppiumBy.XPATH, "//android.widget.TextView[@text='Местоположение определено']"),
         "Сохранить": (AppiumBy.XPATH, "//android.view.View[@content-desc='Принять']/following-sibling::android.widget.Button"),
     }
 
@@ -32,5 +34,13 @@ class PipeEditorScreen(BasePage):
             Свайп выполняется только влево (по оси X).
         """
         target_locator = (AppiumBy.XPATH, f"//android.widget.TextView[@text='{tab_name}']/following-sibling::android.view.View")
-        self.swipe_until_find(target_locator, -350, 0, (AppiumBy.XPATH, "//android.view.View[@content-desc='Панель выбора вкладки']"))
+        self.swipe_until_find(target_locator, 350, 0, (AppiumBy.XPATH, "//android.view.View[@content-desc='Панель выбора вкладки']"))
         self.click(target_locator)
+    
+    def close_location_banner(self):
+        if self.is_displayed(self.ELEMENTS["Определяем местоположение"]):
+            self.click_element(self.ELEMENTS["Применить лучший"])
+        elif self.is_displayed(self.ELEMENTS["Местоположение определено"]):
+            self.click_element(self.ELEMENTS["Скрыть"])
+        else:
+            pass
