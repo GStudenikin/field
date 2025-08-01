@@ -10,9 +10,26 @@ class BasePage:
         self.driver = driver
     
     def find(self, locator, timeout=10):
+        """
+        Ожидает появления элемента на экране и возвращает его.
+
+        Аргументы:
+            locator (tuple): локатор элемента.
+            timeout (int, по умолчанию 10): максимальное время ожидания в секундах.
+
+        Возвращает:
+            WebElement: найденный элемент.
+        """
         return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
     
     def click(self, locator, timeout=10):
+        """
+        Выполняет клик по элементу, повторяя попытку до 3 раз при StaleElementReferenceException.
+
+        Аргументы:
+            locator (tuple): локатор элемента.
+            timeout (int, по умолчанию 10): максимальное время ожидания в секундах.
+        """
         for attempt in range(3):
             try:
                 element = self.find(locator, timeout)
@@ -23,6 +40,16 @@ class BasePage:
                     raise
     
     def is_displayed(self, locator, timeout=10):
+        """
+        Проверяет, отображается ли элемент на экране.
+
+        Аргументы:
+            locator (tuple): локатор элемента.
+            timeout (int, по умолчанию 10): максимальное время ожидания в секундах.
+
+        Возвращает:
+            bool: True, если элемент отображается, иначе False.
+        """
         try:
             element = self.find(locator, timeout)
             return element.is_displayed()
@@ -30,17 +57,50 @@ class BasePage:
             return False
     
     def get_location(self, locator):
+        """
+        Возвращает координаты левого верхнего угла элемента.
+
+        Аргументы:
+            locator (tuple): локатор элемента.
+
+        Возвращает:
+            dict: Словарь с координатами {'x': int, 'y': int}.
+        """
         return self.find(locator).location
     
     def get_size(self, locator):
+        """
+        Возвращает ширину и высоту элемента по локатору.
+
+        Аргументы:
+            locator (tuple): локатор элемента.
+
+        Возвращает:
+            dict: Словарь с размерами {'width': int, 'height': int}.
+        """
         return self.find(locator).size
 
     def get_center(self, locator):
+        """
+        Вычисляет координаты центра элемента.
+
+        Аргументы:
+            locator (tuple): локатор элемента.
+        
+        Возвращает:
+            dict: словарь с координатами центра {'x': int, 'y': int}
+        """
         location = self.get_location(locator)
         size = self.get_size(locator)
         return {'x': location['x'] + size['width'] / 2, 'y': location['y'] + size['height'] / 2}
     
     def swipe_select(self, locator):
+        """
+        Выполняет горизонтальный свайп по элементу.
+
+        Аргументы:
+            locator (tuple): локатор элемента, который будет выбран с помощью свайпа.
+        """
         finger = PointerInput("touch", "finger1")
         actions = ActionBuilder(self.driver, mouse=finger)
         coordinates = self.get_center(locator)
@@ -52,20 +112,43 @@ class BasePage:
         actions.perform()
     
     def clear_text_field(self, locator):
+        """
+        Очищает поле соответствующее локатору.
+
+        Аргументы:
+            locator (tuple): поле, которое необходимо очистить.
+        """
         element = self.find(locator)
         element.click()
-        self.driver.press_keycode(29, metastate=4096)
-        self.driver.press_keycode(67)
+        self.driver.press_keycode(29, metastate=4096) # Ctrl+A
+        self.driver.press_keycode(67) # Delete
     
     def set_text(self, locator, text):
+        """
+        Устанавливает в поле ввода текст.
+
+        Аргументы:
+            locator (tuple): поле, в которое необходимо ввести текст.
+            text (str): текст, который необходимо ввести
+        """
         element = self.find(locator)
         element.click()
         element.send_keys(text)
 
     def back_click(self):
+        """
+        Выполняет нажатие на кнопку назад.
+        """
         self.click((AppiumBy.XPATH, "//android.view.View[@content-desc='Назад']"))
     
     def swipe(self, point_start, point_end):
+        """
+        Выполняет свайп от начальной до конечной точки на экране.
+
+        Аргументы:
+            point_start (list[int]): Координаты начальной точки в формате [x, y].
+            point_end (list[int]): Координаты конечной точки в формате [x, y].
+        """
         finger = PointerInput("touch", "finger1")
         actions = ActionBuilder(self.driver, mouse=finger)
         actions.pointer_action.move_to_location(point_start[0], point_start[1])
@@ -80,9 +163,9 @@ class BasePage:
 
         Аргументы:
             target_locator: локатор элемента, который должен появиться на экране.
-            step_x: шаг по оси X. Положительное значение — свайп влево, отрицательное — вправо.
-            step_y: шаг по оси Y. Положительное значение — свайп вниз, отрицательное — вверх.
-            outside_object_locator (опционально): локатор элемента, по которому выполнять свайп.
+            step_x (int): шаг по оси X. Положительное значение — свайп влево, отрицательное — вправо.
+            step_y (int): шаг по оси Y. Положительное значение — свайп вниз, отрицательное — вверх.
+            outside_object_locator (tuple, optional): локатор элемента, по которому выполнять свайп.
                 Если не указан — свайп выполняется от центра экрана.
 
         Примечания:
@@ -106,11 +189,12 @@ class BasePage:
     
     def set_dropdown(self, field, value, swipe=False):
         """
-        Выполняет поиск поля 'field'. Открывает выпадающий список по локатору 'field' и выбирает пункт с текстом value.
+        Открывает выпадающий список и выбирает указанное значение.
 
         Аргументы:
-            field: локатор поля, которое нужно открыть для выбора значения.
-            value (str): Текстовое значение элемента, который нужно выбрать.
+            field (tuple): локатор поля, которое нужно открыть для выбора значения.
+            value (str): текстовое значение элемента, который нужно выбрать.
+            swipe (bool, по умолчанию False): если True - предварительно прокручивает экран до обнаружения поля.
         """
         if swipe:
             self.swipe_until_find(field, 0, 200)
