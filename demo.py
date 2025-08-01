@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from utils.appium_utils import initialize_appium_driver
-from pages.main_menu_screen import MainMenuScreen
+from pages.main_menu_screen import MainMenu
 from pages.projects_screen import ProjectsScreen
 from pages.project_editor_screen import ProjectEditorScreen
 from pages.roads_screen import RoadsScreen
@@ -13,7 +13,7 @@ from pages.filter_screen import FilterScreen
 
 driver = initialize_appium_driver()
 
-ms = MainMenuScreen(driver)
+ms = MainMenu(driver)
 ms.click_button("Проекты")
 
 ps = ProjectsScreen(driver)
@@ -27,16 +27,13 @@ pes.set_start_date("03.05.1970")
 pes.set_end_date("25.05.1995")
 pes.set_comment("Бла-бла-бла")
 pes.click_element("СОХРАНИТЬ")
-
 ps.back_click()
 
-ms = MainMenuScreen(driver)
+ms = MainMenu(driver)
 ms.click_button("Дороги")
-
 rs = RoadsScreen(driver)
 rs.click_button("+")
 rs.click_button("Заполнить вручную")
-
 res = RoadEditorScreen(driver)
 res.set_name("Тестовая дорога")
 res.set_inventory_number("322")
@@ -45,11 +42,9 @@ res.set_status("Региональная")
 res.set_category("IВ")
 res.set_class("Скоростная дорога")
 res.click_element("СОХРАНИТЬ")
-
-rs = RoadsScreen(driver)
-rs.back_click()
-
-ms = MainMenuScreen(driver)
+ps.back_click()
+ps.back_click()
+ms = MainMenu(driver)
 ms.click_button("Дорожные объекты")
 ms.click_button("Трубы")
 
