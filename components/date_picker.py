@@ -6,7 +6,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 
 
 class DatePicker(BasePage):
-#To do: реализовать ввод с помощью пикера, а не поля ввода    
+# TODO: реализовать ввод с помощью пикера, а не поля ввода    
     TYPES = {
         "input": (AppiumBy.XPATH, "//android.view.View[@content-desc='Перейти в режим ввода текста']"),
         "pick": (AppiumBy.XPATH, "//android.view.View[@content-desc='Перейти в режим выбора даты']"),
@@ -22,6 +22,13 @@ class DatePicker(BasePage):
         super().__init__(driver)
 
     def get_current_input_type(self):
+        """
+        Определяет текущий способ ввода даты на экране.
+
+        Возвращает:
+            str: "pick", если отображается выбор даты из календаря,
+                иначе "input" (ввод вручную).
+        """
         for type in self.TYPES.keys():
             if type == "input":
                 if self.is_displayed(self.TYPES[type]):
@@ -30,15 +37,40 @@ class DatePicker(BasePage):
                     return "input"
     
     def click_type(self, type):
+        """
+        Выполняет клик по переключателю способа ввода даты.
+
+        Аргументы:
+        type (str): тип ввода, "input" или "pick".
+        """
         self.click(self.TYPES[type])
     
     def click_element(self, name):
+        """
+        Выполняет нажатие на элемент по ключу из словаря ELEMENTS.
+
+        Аргументы:
+            element (str): Ключ элемента в словаре ELEMENTS.
+        """
         self.click(self.ELEMENTS[name])
 
     def clear_date(self):
+        """
+        Очищает текстовое поле даты.
+        """
         self.clear_text_field(self.ELEMENTS["Дата"])
     
     def set_date(self, date, method="input"):
+        """
+        Устанавливает дату в поле даты.
+
+        Аргументы:
+            date (str): дата в формате "дд.мм.гггг".
+            method (str, по умолчанию "input"): способ установки — "input" (ручной ввод) или "pick" (календарь).
+
+        Примечание:
+            При выборе "pick" логика ещё не реализована.
+        """
         if method == "input":
             self.click_type("input")
             self.clear_date()
