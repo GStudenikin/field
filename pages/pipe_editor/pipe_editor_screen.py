@@ -8,7 +8,7 @@ class PipeEditorScreen(BasePage):
     
     ELEMENTS = {
         "Геопозиция": (AppiumBy.XPATH, "//android.widget.TextView[@text='Точность геопозиции ~ 5,00 м']"),
-        "Применить лучший": (AppiumBy.XPATH, "//android.widget.TextView[@text='Скрыть']/following-sibling::android.widget.Button"),
+        "Применить лучший": (AppiumBy.XPATH, "//android.widget.TextView[@text='Применить лучший']/following-sibling::android.widget.Button"),
         "Скрыть": (AppiumBy.XPATH, "//android.widget.TextView[@text='Скрыть']/following-sibling::android.widget.Button"),
         "Местоположение": (AppiumBy.XPATH, "//android.view.View[@content-desc='Добавить/обновить местоположение']/following-sibling::android.widget.Button"),
         "Определяем местоположение": (AppiumBy.XPATH, "//android.widget.TextView[@text='Определяем местоположение']"),
@@ -39,8 +39,6 @@ class PipeEditorScreen(BasePage):
     
     def close_location_banner(self):
         if self.is_displayed(self.ELEMENTS["Определяем местоположение"]):
-            self.click_element(self.ELEMENTS["Применить лучший"])
+            self.click_element("Применить лучший")
         elif self.is_displayed(self.ELEMENTS["Местоположение определено"]):
-            self.click_element(self.ELEMENTS["Скрыть"])
-        else:
-            pass
+            self.click_element("Скрыть")
