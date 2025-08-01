@@ -4,7 +4,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from pages.base_page import BasePage
 from appium.webdriver.common.appiumby import AppiumBy
 
-class MainMenuScreen(BasePage):
+class MainMenu(BasePage):
     
     BUTTONS = {
         "Активный проект": (AppiumBy.XPATH, "//android.widget.TextView[@text='Активный проект: ']"),
@@ -32,4 +32,10 @@ class MainMenuScreen(BasePage):
         super().__init__(driver)
 
     def click_button(self, name):
+        """
+        Выполняет нажатие на элемент по ключу из словаря BUTTONS.
+
+        Аргументы:
+            name (str): Ключ элемента в словаре BUTTONS.
+        """
         self.click(self.BUTTONS[name])

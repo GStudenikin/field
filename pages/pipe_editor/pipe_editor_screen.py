@@ -20,6 +20,12 @@ class PipeEditorScreen(BasePage):
         super().__init__(driver)
     
     def click_element(self, element):
+        """
+        Выполняет нажатие на элемент по ключу из словаря ELEMENTS.
+
+        Аргументы:
+            element (str): Ключ элемента в словаре ELEMENTS.
+        """
         self.click(self.ELEMENTS[element])
 
     def set_tab(self, tab_name):
@@ -38,6 +44,13 @@ class PipeEditorScreen(BasePage):
         self.click(target_locator)
     
     def close_location_banner(self):
+        """
+        Закрывает баннер определения местоположения, если он отображается.
+
+        Поведение:
+            - Если отображается баннер "Определяем местоположение", нажимает "Применить лучший".
+            - Если отображается баннер "Местоположение определено", нажимает "Скрыть".
+        """
         if self.is_displayed(self.ELEMENTS["Определяем местоположение"]):
             self.click_element("Применить лучший")
         elif self.is_displayed(self.ELEMENTS["Местоположение определено"]):

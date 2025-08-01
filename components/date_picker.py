@@ -29,12 +29,7 @@ class DatePicker(BasePage):
             str: "pick", если отображается выбор даты из календаря,
                 иначе "input" (ввод вручную).
         """
-        for type in self.TYPES.keys():
-            if type == "input":
-                if self.is_displayed(self.TYPES[type]):
-                    return "pick"
-                else:
-                    return "input"
+        return "pick" if self.is_displayed(self.TYPES["input"]) else "input"
     
     def click_type(self, type):
         """
