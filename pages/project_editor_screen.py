@@ -21,12 +21,30 @@ class ProjectEditorScreen(BasePage):
         super().__init__(driver)
 
     def click_element(self, element):
+        """
+        Выполняет нажатие на элемент по ключу из словаря ELEMENTS.
+
+        Аргументы:
+            element (str): Ключ элемента в словаре ELEMENTS.
+        """
         self.click(self.ELEMENTS[element])
     
     def set_examination_type(self, examination_name):
+        """
+        Устанавливает вид обследования из выпадающего списка.
+
+        Аргументы:
+            examination_name (str): текстовое значение, которое нужно выбрать.
+        """
         self.set_dropdown(self.ELEMENTS["Вид обследования"], examination_name)
     
     def set_project_name(self, name):
+        """
+        Устанавливает значение в поле 'Вид обследования'.
+
+        Аргументы:
+            name (str): текстовое значение, которое будет установлено.
+        """
         self.click_element("Название проекта")
         self.set_text(self.ELEMENTS["Название проекта"], name)
     
