@@ -7,6 +7,8 @@ from appium.webdriver.common.appiumby import AppiumBy
 class MainMenu(BasePage):
     
     BUTTONS = {
+        "Настройки": (AppiumBy.XPATH, "//android.view.View[@content-desc='Настройки']/following-sibling::android.widget.Button"),
+        "Активировать": (AppiumBy.XPATH, "//android.widget.TextView[@text='Активировать']"),
         "Активный проект": (AppiumBy.XPATH, "//android.widget.TextView[@text='Активный проект: ']"),
         "Активная дорога": (AppiumBy.XPATH, "//android.widget.TextView[@text='Активная дорога: ']"),
         "Проекты": (AppiumBy.XPATH, "//android.widget.TextView[@text='Проекты']"),

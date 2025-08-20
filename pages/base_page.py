@@ -4,6 +4,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium.webdriver.common.actions.pointer_input import PointerInput
 from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import TimeoutException
 
 class BasePage:
     def __init__(self, driver):
@@ -21,6 +22,17 @@ class BasePage:
             WebElement: найденный элемент.
         """
         return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
+    
+    def wait_until_disappears(self, locator, timeout=20):
+        """
+        Ждёт, пока элемент исчезнет (станет невидимым или будет удалён).
+        """
+        try:
+            return WebDriverWait(self.driver, timeout).until(
+                EC.invisibility_of_element_located(locator)
+            )
+        except TimeoutException:
+            return False
     
     def click(self, locator, timeout=10):
         """
